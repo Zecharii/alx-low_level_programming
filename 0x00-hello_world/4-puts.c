@@ -1,5 +1,4 @@
 #include<stdout>
-
 /**
  * main - Entry point
  *
