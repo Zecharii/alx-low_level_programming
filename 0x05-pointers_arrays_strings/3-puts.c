@@ -6,18 +6,12 @@
  * @str: input string.
  * Return: no return.
  */
+
 void _puts(char *str)
 {
-	int count = 0;
-
-	while (count >= 0)
+	for (; *str != '\0'; str++)
 	{
-		if (str[count] == '\0')
-		{
-			_putchar('\n');
-			break;
-		}
-		_putchar(str[count]);
-		count++;
+		_putchar(*str);
 	}
+	_putchar('\n');
 }
