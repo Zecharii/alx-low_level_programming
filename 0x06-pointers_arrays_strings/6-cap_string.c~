@@ -1,0 +1,34 @@
+#include "main.h"
+/**
+ * cap_string - capitalizes all words of a string
+ * @s: input string.
+ * Return: the pointer to dest.
+ */
+
+char *cap_string(char *s)
+{
+	char *ptr = s;
+	int is_word_start = 1;
+	
+	while (*ptr != '\0')
+	{
+		if (*ptr >= 'a' && *ptr <= 'z')
+		{
+			if (is_word_start)
+			{
+				*ptr = *ptr - 'a' + 'A';
+				is_word_start = 0;
+			}
+		}
+		else if (*ptr == ' ' || *ptr == '\t' || *ptr == '\n' || *ptr == ',' || *ptr == ';' || *ptr == '.' || *ptr == '!' || *ptr == '?' || *ptr == '"' || *ptr == '(' || *ptr == ')' || *ptr == '{' || *ptr == '}')
+		{
+			is_word_start = 1;
+		}
+		else 
+		{
+			is_word_start =1;
+		}
+		ptr++;
+	}
+	return s;
+}
