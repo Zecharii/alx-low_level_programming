@@ -8,13 +8,13 @@
  * Return: the address of the new element, NULL if it failed
  */
 
-list_t *add_nodeint_end(listint_t **head, const int n)
+listint_t *add_nodeint_end(listint_t **head, const int n)
 {
-	listint_t *new_code, *current;
+	listint_t *new_node, *current;
 
 	/* Allocate memory for the new node */
 	new_node = malloc(sizeof(listint_t));
-	if (new_node = NULL)
+	if (new_node == NULL)
 		return (NULL);
 
 	/* Initialize the new node with the provided data */
