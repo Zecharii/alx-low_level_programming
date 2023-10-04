@@ -2,12 +2,11 @@
 #include <stdio.h>
 
 /**
- * error_file - Checks if file descriptors can be opened.
- * @file_from: Source file descriptor.
- * @file_to: Destination file descriptor.
- * @argv: Command-line arguments vector.
- *
- * Return: No return value.
+ * error_file - checks if file decriptors can be opened.
+ * @file_from: source filde descriptor.
+ * @file_to: destination file descriptor.
+ * @argv: arguments vector.
+ * Return: no return value.
  */
 
 void error_file(int file_from, int file_to, char *argv[])
@@ -15,25 +14,26 @@ void error_file(int file_from, int file_to, char *argv[])
 	if (file_from == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
 	}
 	if (file_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
 	}
 }
 
 /**
- * main - Checks if the number of arguments equal 3.
- * @argc: Number of argument.
- * @argv: Command-line arguments vector.
- *
+ * main - check the code for Holberton School students.
+ * @argc: number of arguments.
+ * @argv: arguments vector.
  * Return: Always 0.
  */
 
 int main(int argc, char *argv[])
 {
 	int file_from, file_to, err_close;
-	ssize_t nchars, wrr;
+	ssize_t nchars, nwr;
 	char buf[1024];
 
 	if (argc != 3)
@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
 		nchars = read(file_from, buf, 1024);
 		if (nchars == -1)
 			error_file(-1, 0, argv);
-		wrr = write(file_to, buf, nchars);
-		if (nchars == -1)
+		nwr = write(file_to, buf, nchars);
+		if (nwr == -1)
 			error_file(0, -1, argv);
 	}
 
@@ -67,9 +67,8 @@ int main(int argc, char *argv[])
 	err_close = close(file_to);
 	if (err_close == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
-
 	return (0);
 }
