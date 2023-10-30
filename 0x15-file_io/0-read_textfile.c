@@ -24,16 +24,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	read_result = read(file_descriptor, buffer, letters);
-	if (read_result == -1)
-		return (0);
-
 	write_result = write(file_descriptor, buffer, read_result);
-	if (write_result == -1 || read_result != write_result)
-		return (0);
 
 	close(file_descriptor);
 
 	free(buffer);
 
-	return (read_result);
+	return (write_result);
 }
